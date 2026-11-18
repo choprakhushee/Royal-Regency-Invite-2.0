@@ -136,5 +136,5 @@ window.CONFIG = {
   colours: { rose: '#E8B4B8', blue: '#BFD5E8', mint: '#BFDCCB', lilac: '#CDBDE0', ivory: '#FBF6EE', gold: '#C2A15B', marigold: '#E9962E', jodhpur: '#4E79A7', maroon: '#5A1F2B' },
 
   // scroll length of each scene, in screen heights, while it plays
-  lengths: { opener: 1, herald: 2.2, palace: 2.2, sheesh: 2.6, portraits: 2.2, kundli: 1.3, terrace: 2.6, mehendi: 1.3, muhurat: 1.4, events: 1.6, joota: 1.4, baraat: 2.2, rsvp: 1.4, finale: 1.4 }
+  lengths: { opener: 1, herald: 1.6, palace: 1.6, sheesh: 1.8, portraits: 1.4, kundli: 1.2, terrace: 1.8, mehendi: 1.2, muhurat: 1.2, events: 1.3, joota: 1.2, baraat: 1.6, rsvp: 1.2, finale: 1.3 }
 };

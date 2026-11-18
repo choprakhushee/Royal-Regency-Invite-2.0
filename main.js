@@ -140,7 +140,7 @@ const CONFIG = window.CONFIG;
       return `${bg('herald-window', 'fb-paper', '', '')}
         <div class="content">
           <div class="paper-shadow"></div>
-          <article class="herald" aria-label="${esc(H.masthead)}">
+          <div class="herald-fit"><article class="herald" aria-label="${esc(H.masthead)}">
             <div class="mast-deva" lang="hi">${esc(H.mastheadDeva)}</div>
             <div class="mast">${esc(H.masthead)}</div>
             <div class="mast-rule"></div>
@@ -148,19 +148,21 @@ const CONFIG = window.CONFIG;
             <h2 class="headline" aria-label="${esc(H.headline)}">${head}</h2>
             <p class="deck">${esc(H.deck)}</p>
             <div class="h-cols">
+              <div class="oval">${['bride', 'groom'].map((k, i) => `<div class="half ${i ? 'r' : ''}"><img alt="" data-src="${sceneSrc(k)}.webp" data-alt="${sceneSrc(k)}.jpg"></div>`).join('')}</div>
               <div class="h-lead">${esc(H.lead)}</div>
               <aside class="h-side">
-                <div class="oval">${['bride', 'groom'].map((k, i) => `<div class="half ${i ? 'r' : ''}"><img alt="" data-src="${sceneSrc(k)}.webp" data-alt="${sceneSrc(k)}.jpg"></div>`).join('')}</div>
                 <h4>Bua-ji's Predictions</h4>
                 <ol>${H.predictions.map((p) => `<li>${esc(p)}</li>`).join('')}</ol>
               </aside>
             </div>
             <div class="byline">${esc(H.byline)}</div>
-          </article>
+          </article></div>
         </div>`;
     },
     init(sec) {
-      const paper = $('.herald', sec), shadow = $('.paper-shadow', sec);
+      const paper = $('.herald', sec), shadow = $('.paper-shadow', sec), fit = $('.herald-fit', sec);
+      const doFit = () => { fit.style.transform = ''; const room = (window.innerHeight || 800) * 0.88; const h = fit.offsetHeight; fit.style.transform = h > room ? `scale(${(room / h).toFixed(3)})` : ''; };
+      doFit(); addEventListener('resize', doFit); if (document.fonts) document.fonts.ready.then(doFit);
       this.letters = $$('.headline .w > span', sec);
       if (!hasGSAP || RM) { this.letters.forEach((l) => (l.style.opacity = 1)); return; }
       gsap.set(paper, { yPercent: -70, rotation: -14, rotationX: 50, opacity: 0, transformPerspective: 900 });
@@ -260,7 +262,7 @@ const CONFIG = window.CONFIG;
     },
     init(sec) {
       const mobile = innerWidth < 600;
-      this.glints = new FX.Glints($('[data-glints]', sec), { regions: A.sheesh.mirrors, exclude: [[0.08, 0.15, 0.92, 0.88]], count: mobile ? 1100 : 1600, size: 10, sharp: 9, grid: 0.012, alpha: 0.95 });
+      this.glints = new FX.Glints($('[data-glints]', sec), { regions: A.sheesh.mirrors, exclude: [[0.08, 0.15, 0.92, 0.88]], count: mobile ? 650 : 1100, size: 10, sharp: 9, grid: 0.012, alpha: 0.95 });
       this.glints2 = this.glints; // the panel exclusion keeps text clean
       this.lines = $$('.panel .l', sec);
       this.pend = $$('[data-pend]', sec).map((el, i) => ({ el, P: new FX.Pendulum(i < 2 ? 5 : 9, i < 2 ? 0.7 : 1.4) }));
@@ -268,7 +270,7 @@ const CONFIG = window.CONFIG;
     },
     tick(dt, p) {
       const n = this.lines.length;
-      this.lines.forEach((l, i) => { const v = range(p, 0.04 + i * 0.055, 0.12 + i * 0.055); l.style.opacity = v; l.style.transform = `translateY(${(1 - v) * 10}px)`; l.style.filter = v < 1 ? `blur(${(1 - v) * 5}px)` : 'none'; });
+      this.lines.forEach((l, i) => { const v = range(p, 0.04 + i * 0.055, 0.12 + i * 0.055); l.style.opacity = v; l.style.transform = `translateY(${(1 - v) * 10}px)`; });
       if (!this.done && p > 0.04 + n * 0.055 + 0.08) { this.done = true; Sound.sfx.shimmer(); }
       const vel = (p - this.lastP) / Math.max(dt, 0.001); this.lastP = p;
       this.t = (this.t || 0) + dt;
@@ -297,12 +299,7 @@ const CONFIG = window.CONFIG;
               ${cut('miniature-frame', 'frame', ART.miniFrame(), '', 'inset:0')}
               <span class="tap-hint">Biodata ↻</span>
             </div>
-            <div class="face back"><div class="biodata">
-              <div class="om">ॐ</div><h3>SHAADI BIODATA</h3>
-              <div class="clip"></div><div class="stamp"><img alt="" data-src="${sceneSrc(k)}.webp" data-alt="${sceneSrc(k)}.jpg"></div>
-              <dl>${bio.map(([a, b]) => `<dt>${esc(a)}:</dt> <dd>${esc(b)}</dd>`).join('')}</dl>
-              <div class="verdict">Bua-ji's verdict: “${esc(verdict)}”</div>
-            </div></div>
+            <div class="face back"><div class="bio-cover"><div class="om">ॐ</div><div class="t">Shaadi<br>Biodata</div><div class="n">${esc(P.first)}</div></div></div>
           </button>
           <div class="cap"><div class="title">${esc(P.title)}</div><div class="who">${esc(P.full)}</div><div class="par">${esc(P.relation)} ${esc(P.parents)}</div></div>
         </div>`;
@@ -311,22 +308,44 @@ const CONFIG = window.CONFIG;
     },
     init(sec) {
       this.p1 = $('.p1', sec); this.p2 = $('.p2', sec);
+      // the portrait turns over, then the biodata opens as its own sheet, large and readable
+      const sheet = document.createElement('div'); sheet.className = 'bio-sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true');
+      sheet.innerHTML = '<div class="paper" tabindex="-1"></div>';
+      document.body.appendChild(sheet);
+      const paper = $('.paper', sheet);
+      let openPt = null;
+      const close = () => {
+        if (!openPt) return;
+        sheet.classList.remove('open'); Sound.sfx.rustle();
+        const pt = openPt; openPt = null;
+        setTimeout(() => { pt.classList.remove('flipped'); $('.flip', pt).setAttribute('aria-pressed', 'false'); $('.flip', pt).focus({ preventScroll: true }); }, 250);
+      };
       $$('.portrait', sec).forEach((pt) => {
-        const b = $('.flip', pt);
+        const b = $('.flip', pt), k = pt.dataset.k, P = C.couple[k];
         b.addEventListener('click', () => {
-          const on = !pt.classList.contains('flipped');
-          pt.classList.toggle('flipped', on); b.setAttribute('aria-pressed', on);
-          Sound.sfx.rustle();
+          if (openPt) return close();
+          openPt = pt; pt.classList.add('flipped'); b.setAttribute('aria-pressed', 'true'); Sound.sfx.rustle();
+          const img = $('.photo img.ok', pt);
+          paper.innerHTML = `<div class="head"><div class="om">ॐ</div><div class="lbl">Shaadi Biodata</div>
+              <div class="stamp">${img ? `<img alt="" src="${img.currentSrc || img.src}">` : `<span>${esc(P.first[0])}</span>`}</div></div>
+            <h3>${esc(P.full)}</h3><div class="sub">${esc(P.title)}</div>
+            <dl>${C.biodatas[k].filter(([a]) => a !== 'Name').map(([a, v]) => `<dt>${esc(a)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+            <div class="verdict"><span>Bua-ji's verdict</span>“${esc(C.biodatas[k + 'Verdict'])}”</div>
+            <button class="btn small close">Close</button>`;
+          setTimeout(() => { sheet.classList.add('open'); paper.focus({ preventScroll: true }); }, RM ? 0 : 420);
+          $('.close', paper).addEventListener('click', (e) => { e.stopPropagation(); close(); });
         });
       });
+      sheet.addEventListener('click', (e) => { if (e.target === sheet) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     },
     tick(dt, p) {
       this.t = (this.t || 0) + dt;
       const a = range(p, 0, 0.3), b = range(p, 0.12, 0.42);
       const ea = 1 - Math.pow(1 - a, 3), eb = 1 - Math.pow(1 - b, 3);
       const sw = Math.sin(this.t * 0.9) * 0.6;
-      this.p1.style.transform = `translateX(${(1 - ea) * -130}%) rotate(${(1 - ea) * -8 + sw}deg)`;
-      this.p2.style.transform = `translateX(${(1 - eb) * 130}%) rotate(${(1 - eb) * 8 - sw}deg)`;
+      this.p1.style.transform = `translateX(${(1 - ea) * -170}%) rotate(${(1 - ea) * -8 + sw}deg)`;
+      this.p2.style.transform = `translateX(${(1 - eb) * 170}%) rotate(${(1 - eb) * 8 - sw}deg)`;
     }
   });
 
@@ -347,7 +366,7 @@ const CONFIG = window.CONFIG;
           <div class="guna"><div class="bar"><i></i></div><div class="num" aria-live="polite"><span class="g">0</span><small>/36 gunas</small></div></div>
           <p class="verdict-k">“${esc(K.verdict)}”</p>
           <button class="btn" data-match>Tap to match kundlis</button>
-          <p class="sc" style="margin:10px 0 0;font-size:10px">${esc(K.note)}</p>
+          <p class="sc" style="margin:10px 0 0;font-size:12.5px">${esc(K.note)}</p>
         </div>
         <button class="btn ghost small skip" data-skip>Skip</button></div>`;
     },
@@ -395,7 +414,7 @@ const CONFIG = window.CONFIG;
       return `${bg('terrace-line', 'fb-terrace', ART.palaceSilhouette(false), 'shade-bottom')}
         ${['#E8B4B8', '#4E79A7', '#E9962E'].map((c, i) => `<div class="kite" style="left:${[18, 70, 46][i]}%;top:${[6, 10, 3][i]}%">${ART.kite(c)}</div>`).join('')}
         <div class="content">${items}
-          <div class="terrace-title"><span class="sc ivory-text">Whispers on the terrace</span><h2 class="ivory-text">How the rishta happened</h2><span class="sc ivory-text" style="font-size:11px">tap a chit to read Bua-ji's report</span></div>
+          <div class="terrace-title"><span class="sc ivory-text">Whispers on the terrace</span><h2 class="ivory-text">How the rishta happened</h2><span class="sc ivory-text" style="font-size:13px">tap a chit to read Bua-ji's full report</span></div>
         </div>`;
     },
     init(sec) {
@@ -409,7 +428,7 @@ const CONFIG = window.CONFIG;
         if (!openChit) return;
         Sound.sfx.peg(); zoom.classList.remove('open');
         if (hasGSAP && !RM) gsap.to($('.slip', zoom), { scale: 0.5, y: 80, rotation: -8, duration: 0.5, ease: 'power2.in' });
-        openChit.focus(); openChit = null;
+        openChit.focus({ preventScroll: true }); openChit = null;
       };
       this.chits.forEach((ch) => ch.addEventListener('click', () => {
         const c = C.chits[+ch.dataset.i];
@@ -417,7 +436,7 @@ const CONFIG = window.CONFIG;
         openChit = ch; zoom.classList.add('open'); Sound.sfx.rustle();
         const r = ch.getBoundingClientRect();
         if (hasGSAP && !RM) gsap.fromTo($('.slip', zoom), { x: r.left + r.width / 2 - innerWidth / 2, y: r.top + r.height / 2 - innerHeight / 2, scale: 0.42, rotation: -6 }, { x: 0, y: 0, scale: 1, rotation: -1.5, duration: 0.8, ease: 'power3.out' });
-        $('.slip', zoom).focus();
+        $('.slip', zoom).focus({ preventScroll: true });
       }));
       zoom.addEventListener('click', close);
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
@@ -456,7 +475,7 @@ const CONFIG = window.CONFIG;
           <path class="hn" stroke-width="1" d="M-6 -30 C14 -34 26 -14 18 4 C10 22 -14 24 -20 8 C-26 -8 -18 -26 -6 -30 C-14 -40 -10 -50 0 -54"/>
           <path class="hn" stroke-width=".7" d="M-2 -24 C10 -26 18 -12 13 1 C8 14 -9 16 -14 5 C-18 -6 -12 -21 -2 -24"/>
           <text class="hn" x="-3" y="5" font-family="Pinyon Script, cursive" font-size="22" text-anchor="middle">${esc(M.initial)}</text>
-          <text class="hn" x="34" y="34" font-family="Alex Brush, cursive" font-size="17">${esc(M.name)}</text>
+          <text class="hn" x="34" y="34" font-family="Pinyon Script, cursive" font-size="18">${esc(M.name)}</text>
           <path class="hn" stroke-width=".6" d="M30 40 C60 44 90 40 108 34"/>
           ${Array.from({ length: 7 }, (_, i) => `<circle class="hn" stroke-width=".6" cx="${36 + i * 11}" cy="${46 + (i % 2) * 2}" r="1.6"/>`).join('')}
         </g></svg>`;
@@ -548,7 +567,7 @@ const CONFIG = window.CONFIG;
           <div class="count" role="timer" aria-live="off">
             <h2 class="ivory-text">Until the Shubh Muhurat</h2>
             <div class="units">${unit(3, 'Days', 'd')}${unit(2, 'Hours', 'h')}${unit(2, 'Minutes', 'm')}${unit(2, 'Seconds', 's')}</div>
-            <p class="sc ivory-text" style="font-size:12px;margin-top:10px">the pheras · ${esc(C.events.find((e) => e.key === 'wedding').display)}</p>
+            <p class="sc ivory-text" style="font-size:13px;margin-top:10px">the pheras · ${esc(C.events.find((e) => e.key === 'wedding').display)}</p>
           </div>
         </div>`;
     },
@@ -717,7 +736,7 @@ const CONFIG = window.CONFIG;
       return `${bg('baraat-lane', 'fb-night', ART.palaceSilhouette(true), 'shade-both')}
         <svg class="lanterns plane" data-depth="12" viewBox="0 0 400 300" preserveAspectRatio="xMidYMin slice" aria-hidden="true">${ART.lanternRow(5, 30, 60, 0)}${ART.lanternRow(6, 110, 50, 2)}</svg>
         <div class="content">
-          <div class="baraat-copy"><span class="sc ivory-text">${esc(C.events.find((e) => e.key === 'wedding').display)}</span><h2 class="ivory-text">The baraat arrives</h2><span class="sc ivory-text" style="font-size:11px">${esc(C.events.find((e) => e.key === 'wedding').venue)} · ${esc(C.city)}</span></div>
+          <div class="baraat-copy"><span class="sc ivory-text">${esc(C.events.find((e) => e.key === 'wedding').display)}</span><h2 class="ivory-text">The baraat arrives</h2><span class="sc ivory-text" style="font-size:13px">${esc(C.events.find((e) => e.key === 'wedding').venue)} · ${esc(C.city)}</span></div>
           <div class="plane ghodi" data-depth="0">${cut('groom-ghodi', '', ART.ghodi(), 'The groom arriving on a white horse', 'inset:0')}</div>
           <button class="dhol-btn" aria-label="Play the dhol">${cut('dhol', '', ART.dhol(), 'A decorated dhol', '')}<span class="lbl">tap the dhol</span></button>
           <a class="plaque" href="${esc(C.mapsUrl)}" target="_blank" rel="noopener">Get directions</a>
@@ -788,7 +807,7 @@ const CONFIG = window.CONFIG;
       $('#g-sangeet').addEventListener('change', (e) => { store.set('sangeet', e.target.value); });
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!name.value.trim()) { name.focus(); name.placeholder = 'Your name, beta'; return; }
+        if (!name.value.trim()) { name.focus({ preventScroll: true }); name.placeholder = 'Your name, beta'; return; }
         const evs = $$('.ev-check input:checked', sec).map((c) => c.value);
         store.set('rsvp', { name: name.value.trim(), events: evs });
         const team = $('#g-team').value, sang = $('#g-sangeet').value;
@@ -974,7 +993,9 @@ const CONFIG = window.CONFIG;
       // the next scene rises over this one; this one sinks back and darkens
       const next = scenes[i + 1];
       if (next) {
-        const tl = gsap.timeline({ scrollTrigger: { trigger: next.sec, start: 'top bottom', end: 'top top', scrub: 0.4, invalidateOnRefresh: true } });
+        const tl = gsap.timeline({ scrollTrigger: { trigger: next.sec, start: 'top bottom', end: 'top top', scrub: 0.4, invalidateOnRefresh: true,
+          // while the hand-over plays, both scenes get their own layer so they move instead of being repainted
+          onToggle: (st) => { s.el.classList.toggle('moving', st.isActive); next.el.classList.toggle('moving', st.isActive); } } });
         tl.to(s.el, { scale: 0.93, yPercent: -3, ease: 'none' }, 0).to(s.el.querySelector('.dim'), { opacity: 0.6, ease: 'none' }, 0);
         if (s.exit) s.exit(tl, s.sec);
       }

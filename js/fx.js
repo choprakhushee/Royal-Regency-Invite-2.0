@@ -70,7 +70,7 @@
     const count = opts.count || 900;
     function inside(x, y, r) { return x > r[0] && x < r[2] && y > r[1] && y < r[3]; }
     function build() {
-      const d = DPR(); w = canvas.clientWidth; h = canvas.clientHeight;
+      const d = innerWidth < 600 ? 1 : DPR(); w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = Math.round(w * d); canvas.height = Math.round(h * d); g.setTransform(d, 0, 0, d, 0, 0);
       pts = [];
       let guard = 0;
@@ -87,8 +87,11 @@
     }
     build();
     this.resize = build;
+    let acc = 0;
     this.draw = function (dt, scroll) {
-      t += dt;
+      t += dt; acc += dt;
+      if (acc < 1 / 31) return; // twinkle at ~30 fps: invisible difference, half the work
+      acc = 0;
       g.clearRect(0, 0, w, h);
       g.globalCompositeOperation = 'lighter';
       const tx = FX.tilt.x * 5, ty = FX.tilt.y * 5, sc = (scroll || 0) * 6;
