@@ -641,7 +641,7 @@ const CONFIG = window.CONFIG;
         <div class="peek"><div class="lift"><div class="pz"></div></div><div class="found-j">${cut('juttis', '', ART.juttis(), "The groom's juttis", 'position:relative;width:100%;aspect-ratio:1.6')}</div></div>
         <div class="content" style="pointer-events:none">
           <div class="j-head" style="pointer-events:auto"><p class="j-q">Ladkiwale vs Ladkewale: where are the groom's juttis?</p><span class="tries"></span> · <button class="chip" data-change style="min-height:32px;padding:2px 10px;font-size:13px">change team</button></div>
-          <div class="j-result" style="pointer-events:auto"><p></p><button class="btn small" data-again>Play again</button></div>
+          <div class="j-result"><p></p><button class="btn small" data-again>Play again</button></div>
           <button class="btn ghost small skip" data-skip style="pointer-events:auto">Skip</button>
         </div>
         <div class="team-pick ${store.get('team', '') ? 'gone' : ''}">

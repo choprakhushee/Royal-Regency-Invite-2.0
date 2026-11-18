@@ -24,6 +24,15 @@ The music and sound effects are original and synthesised live in the browser (`j
 The site respects reduced-motion settings. The menu's **Event details** button jumps straight to
 the dates, venues and RSVP, for elders.
 
+## Two versions
+
+| | Link | What it is |
+|---|---|---|
+| **Simple** (recommended for most guests) | `/lite/` | One calm page with normal scrolling: open the box, then the names, the invitation, Bua-ji's note, the couple (tap for biodata), the story, the countdown, the events (map, calendar, sangeet sign-up), the RSVP by pigeon, and petals with fireworks at the end. No games and no scroll effects. |
+| **Full film** | `/` | The complete 14-scene experience with the mini-games. |
+
+Both versions read their wording from the same **`config.js`**, so a change there updates both.
+
 ## Open it locally
 
 ```bash
@@ -37,18 +46,18 @@ Then open http://localhost:8000. Add `?skip=1` to start without the box animatio
 Settings → Pages → Source: *Deploy from a branch* → Branch `main`, folder `/ (root)` → Save.
 The link will be `https://choprakhushee.github.io/Royal-Regency-Invite-2.0/`.
 
-## Personalised links
+## Personalised links (work on both versions)
 
 Add `?guest=` to the link, for example:
 
 - `…/Royal-Regency-Invite-2.0/?guest=Sharma%20Family`
-- `…/Royal-Regency-Invite-2.0/?guest=Mehra%20Ji`
+- `…/Royal-Regency-Invite-2.0/lite/?guest=Mehra%20Ji` (simple version)
 
 The guest's name appears on the opener and is filled in on the RSVP card and in the WhatsApp message.
 
 ## Reusing it for a new couple
 
-Everything a couple changes is in the `CONFIG` object at the top of `main.js`:
+Everything a couple changes is in the `CONFIG` object in `config.js` (shared by both versions):
 
 | What | CONFIG field |
 |---|---|
