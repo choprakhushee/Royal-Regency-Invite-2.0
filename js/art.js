@@ -71,8 +71,10 @@
     <rect x="40" y="44" width="220" height="56" rx="28" fill="url(#gRoll)"/>
     <path d="M60 56 Q150 50 240 56" stroke="#fff" stroke-width="2" opacity=".6" fill="none"/>
     <g fill="url(#gWood)"><rect x="18" y="56" width="26" height="32" rx="6"/><circle cx="14" cy="72" r="9"/><rect x="256" y="56" width="26" height="32" rx="6"/><circle cx="286" cy="72" r="9"/></g>
-    <path d="M118 44 C116 66 116 82 118 100 M126 44 C124 66 124 82 126 100" stroke="#b3121f" stroke-width="3" fill="none"/>
-    <path d="M122 100 q-6 14 -2 26 M122 100 q8 12 6 24" stroke="#b3121f" stroke-width="2.5" fill="none" stroke-linecap="round"/>`);
+    <g fill="none" stroke-linecap="round"><path class="kt" d="M118 42 C116 66 116 82 118 102" stroke="#b3121f" stroke-width="3.2" stroke-dasharray="120" stroke-dashoffset="0"/><path class="kt" d="M126 42 C124 66 124 82 126 102" stroke="#b3121f" stroke-width="3.2" stroke-dasharray="120" stroke-dashoffset="0"/>
+    <path class="kt" d="M122 72 c-16 -14 -26 -2 -10 4 c-14 6 -4 18 10 0 c14 18 24 6 10 0 c16 -6 6 -18 -10 -4z" stroke="#b3121f" stroke-width="2.6" stroke-dasharray="120" stroke-dashoffset="0"/>
+    <path class="kt" d="M120 76 q-6 22 -14 34 M124 76 q6 22 14 32" stroke="#b3121f" stroke-width="2.4" stroke-dasharray="120" stroke-dashoffset="0"/>
+    <path class="kt" d="M118 42 C116 66 116 82 118 102" stroke="#e0a21a" stroke-width="1" stroke-dasharray="2 3"/></g>`);
 
   ART.scrollOpen = () => svg('0 0 300 600', `
     <defs><filter id="pd" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#3a1418" flood-opacity=".35"/></filter></defs>

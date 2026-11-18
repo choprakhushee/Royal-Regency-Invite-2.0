@@ -1,144 +1,5 @@
-/* ============================================================================
-   THE RISHTA OF THE SEASON · a wedding invitation film by Aamantran Atelier
-   Everything a new couple needs to change is in CONFIG below. The page is
-   generated from it. Images are listed in assets/manifest.json.
-   ========================================================================== */
-const CONFIG = {
-  brand: 'Aamantran Atelier',
-  hashtag: '#TheRishtaOfTheSeason',
-  guestDefault: 'you',
-
-  couple: {
-    bride: { first: 'Myra', full: 'Myra Bhandari', parents: 'Mrs. Sunita & Mr. Deepak Bhandari', city: 'Delhi', title: 'The Belle of Delhi', relation: 'daughter of' },
-    groom: { first: 'Aryaman', full: 'Aryaman Rathore', parents: 'Mrs. Gayatri & Mr. Mahendra Singh Rathore', city: 'Jodhpur', title: 'The Gentleman of Jodhpur', relation: 'son of' }
-  },
-  blessing: '॥ श्री गणेशाय नमः ॥',
-  blessingSub: 'With the blessings of Lord Ganesha and our elders',
-  invitation: 'With the blessings of our elders, the Bhandari and Rathore families request the pleasure of your company as Myra and Aryaman begin their forever.',
-  dateLine: '12 · 02 · 2028',
-  city: 'Jaipur',
-  pleasure: 'request the pleasure of your company',
-  muhurat: '2028-02-12T19:00:00+05:30',
-  timezoneOffsetMinutes: 330,
-
-  rsvp: {
-    by: '12 January 2028',
-    whatsapp: '919999999999',
-    message: 'Pyaare Myra & Aryaman, {guest} accepts your gracious invitation with the utmost delight! Attending: {events}. Team: {team}. Sangeet: {sangeet} 🕊️🌸'
-  },
-  contacts: [
-    { name: 'Tara Bhandari', role: "the bride's sister", phone: '+91 99999 21212' },
-    { name: 'Yuvraj Rathore', role: "the groom's cousin", phone: '+91 99999 12121' }
-  ],
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=City+Palace+Jaipur',
-
-  narrator: 'A Certain Well-Informed Bua-ji',
-  herald: {
-    masthead: 'THE HAVELI HERALD',
-    mastheadDeva: 'हवेली हेराल्ड',
-    edition: ['Special Shaadi Edition', 'Season of 2028', 'Price: One Ladoo'],
-    headline: 'RISHTA OF THE SEASON FIXED!',
-    deck: 'Bhandaris of Delhi and Rathores of Jodhpur to unite; aunties across two states demand seating charts',
-    lead: 'Pyaare padhne waalon, hold on to your chai. This author can now confirm what every kitty party from Defence Colony to Sardarpura has been whispering for months: Miss Myra Bhandari, the sharpest wit and finest antakshari champion in all of Delhi, is to wed Mr. Aryaman Rathore, the Jodhpur architect with the polo shoulders and the pun problem. The families have exchanged mithai, the pandit-ji has stopped pretending to be surprised, and the Bhandari WhatsApp group has crossed four hundred unread messages before breakfast. The celebrations will unfold in Jaipur this February, among pink palaces, fountains and a great deal of gota-patti. Invitations, this author hears, have been sent to only the most deserving. If you are reading this, beta, congratulations: you are one of them. Dress well. Bua-ji is watching.',
-    predictions: [
-      'The groom will cry first at the varmala. The bride will deny crying at all.',
-      'At least three rishtas will be fixed at the sangeet, one of them before the second song.',
-      'A certain chacha will dance to the dhol until the band begs for mercy.'
-    ],
-    byline: '— A Certain Well-Informed Bua-ji'
-  },
-
-  chits: [
-    { when: 'Winter 2021 · A Delhi wedding', text: "Pyaare padhne waalon, this author has learned that at the Malhotras' sangeet, a certain Rathore boy from Jodhpur abandoned his dance troupe mid-performance to fetch Miss Bhandari a second plate of gol gappe. Scandalous. Delicious." },
-    { when: '2022 – 2024', text: 'Letters! Voice notes! An entire Jodhpur-to-Delhi train route memorised by heart! This author has never seen a long-distance rishta so determined, nor a phone bill so long.' },
-    { when: 'Diwali 2026 · Jaipur', text: 'On a palace terrace, under a sky full of lanterns, the gentleman went down on one knee. The lady, this author hears, said yes before he finished, then made him ask again for the video.' },
-    { when: 'The Season of 2028', text: 'And so the rishta of the season is fixed, beta. You are summoned to witness it. Bua-ji will be watching, as always.' }
-  ],
-
-  biodatas: {
-    bride: [['Name', 'Myra Bhandari'], ['Height', '5\'4" (5\'7" in heels)'], ['Education', 'MA, plus a PhD in arguing'], ['Hobbies', 'reading, baking, winning every family antakshari'], ['Looking for', 'someone who laughs at her jokes and shares his dessert']],
-    brideVerdict: 'Too good for any boy. Except perhaps this one.',
-    groom: [['Name', 'Aryaman Rathore'], ['Height', '6\'0" (5\'11" honestly)'], ['Profession', 'architect'], ['Hobbies', 'polo, terrible puns, making chai at 2 AM'], ['Special skill', 'can survive any Delhi aunty interrogation']],
-    groomVerdict: 'A Rathore with manners. Rare. Grab him.'
-  },
-
-  kundli: {
-    title: 'The Kundli Match',
-    score: 36,
-    verdict: 'Itna perfect match? Even the pandit-ji is suspicious.',
-    note: 'Purely for fun. No stars were consulted, only aunties.'
-  },
-
-  mehendi: {
-    prompt: 'Somewhere in her mehendi, his name is hidden. Can you find it?',
-    found: 'Found! The groom will be relieved.',
-    hint: 'Psst… look near her right palm.',
-    hintAfterSeconds: 20,
-    name: 'Aryaman', initial: 'A',
-    // where the name is drawn, as fractions of the screen (x, y), its rotation and size
-    position: { x: 0.66, y: 0.6, rotate: -24, scale: 1 }
-  },
-
-  joota: {
-    teams: {
-      ladkiwale: { label: 'Team Ladkiwale', sub: "the bride's side", colour: 'rose' },
-      ladkewale: { label: 'Team Ladkewale', sub: "the groom's side", colour: 'mint' }
-    },
-    tries: 3,
-    // hiding spots, as fractions of the screen; the juttis are hidden in a random one
-    spots: [
-      { id: 'curtain', label: 'Behind the curtain', x: 0.16, y: 0.42, anim: 'sway' },
-      { id: 'trunk', label: 'In the trunk', x: 0.3, y: 0.8, anim: 'lid' },
-      { id: 'sofa', label: 'Under the cushion', x: 0.62, y: 0.7, anim: 'lift' },
-      { id: 'mirror', label: 'Behind the mirror', x: 0.8, y: 0.4, anim: 'tilt' },
-      { id: 'turban', label: 'In the turban box', x: 0.55, y: 0.5, anim: 'lid' }
-    ],
-    winLadkiwale: 'Found! Shagun demand: ₹21,000 and a lifetime of chai.',
-    winLadkewale: 'Saved! The groom walks to his mandap in style.',
-    miss: ['Nahi mila! Try again, beta.', 'Wrong spot. Bua-ji is smirking.'],
-    lose: "Arre! The juttis were {spot}. Bua-ji says you'd never survive a real joota chupai."
-  },
-
-  events: [
-    { key: 'mehendi', name: 'The Mehendi Garden Party', date: '2028-02-10', time: '16:00', display: '10 Feb 2028 · 4:00 PM', venue: 'The Charbagh Gardens', dress: 'Garden pastels, florals', colour: '#BFDCCB', icon: 'mehendi' },
-    { key: 'haldi', name: 'The Haldi Morning', date: '2028-02-11', time: '10:00', display: '11 Feb 2028 · 10:00 AM', venue: 'The Courtyard of Fountains', dress: 'Lemon yellow & marigold', colour: '#F4DDA0', icon: 'haldi' },
-    { key: 'sangeet', name: 'The Sangeet Durbar Ball', date: '2028-02-11', time: '20:00', display: '11 Feb 2028 · 8:00 PM', venue: 'The Durbar Hall', dress: 'Royal glamour, pastels & sparkle', colour: '#CDBDE0', icon: 'sangeet', perform: true },
-    { key: 'wedding', name: 'The Wedding', date: '2028-02-12', time: '19:00', display: '12 Feb 2028 · 7:00 PM', venue: 'The Palace Lawns', dress: 'Royal Indian finery', colour: '#E8B4B8', icon: 'wedding' },
-    { key: 'reception', name: 'The Reception Soirée', date: '2028-02-13', time: '20:30', display: '13 Feb 2028 · 8:30 PM', venue: 'The Sheesh Mahal Terrace', dress: 'Evening couture, jewels encouraged', colour: '#BFD5E8', icon: 'reception' }
-  ],
-  eventsCity: 'Jaipur, Rajasthan',
-  performances: ['Solo dance', 'Group dance', 'Song', 'Just here to cheer'],
-
-  finale: {
-    line: 'The rishta of the season awaits your presence',
-    signoff: 'Yours, ever watchful,'
-  },
-
-  // Image slots. Each scene tries the video loop, then the WebP, then the JPG,
-  // and finally draws a coded stand-in. Set a value to null to use the coded art.
-  assets: {
-    dir: 'assets/',
-    music: 'assets/music.mp3',
-    scenes: {
-      'thaal-bg': 'thaal-bg', 'herald-window': 'herald-window', 'palace-sky': 'palace-sky', 'sheesh-mahal': 'sheesh-mahal',
-      'durbar-ball': 'durbar-ball', 'terrace-line': 'terrace-line', 'mehendi-hands': 'mehendi-hands', 'dressing-room': 'dressing-room',
-      'baraat-lane': 'baraat-lane', 'palace-night': 'palace-night', bride: 'bride', groom: 'groom'
-    },
-    videos: { 'palace-sky': 'palace-loop', 'sheesh-mahal': 'sheesh-loop', 'palace-night': 'night-loop' },
-    cutouts: ['box-closed', 'box-open', 'scroll', 'scroll-open', 'lac-seal', 'chandelier', 'bougainvillea', 'jasmine-strand', 'jharokha-frame', 'miniature-frame', 'dupatta-rose', 'dupatta-blue', 'dupatta-mint', 'dupatta-lilac', 'pocket-clock', 'hand-fan', 'juttis', 'groom-ghodi', 'dhol', 'pigeon-up', 'pigeon-down'],
-    // where things sit on each photo (fractions of the screen)
-    thaal: { box: { x: 0.5, y: 0.53 }, diyas: [{ x: 0.13, y: 0.84 }, { x: 0.86, y: 0.84 }], silver: [0.12, 0.36, 0.88, 0.72] },
-    palace: { fountain: [0.38, 0.6, 0.62, 0.95] },
-    sheesh: { mirrors: [[0, 0, 1, 0.82]], panel: [0.2, 0.3, 0.8, 0.66] },
-    clockDial: { cx: 0.5, cy: 0.478, r: 0.38 }
-  },
-
-  colours: { rose: '#E8B4B8', blue: '#BFD5E8', mint: '#BFDCCB', lilac: '#CDBDE0', ivory: '#FBF6EE', gold: '#C2A15B', marigold: '#E9962E', jodhpur: '#4E79A7', maroon: '#5A1F2B' },
-
-  // scroll length of each scene, in screen heights, while it plays
-  lengths: { opener: 1, herald: 2.2, palace: 2.2, sheesh: 2.6, portraits: 2.2, kundli: 1.3, terrace: 2.6, mehendi: 1.3, muhurat: 1.4, events: 1.6, joota: 1.4, baraat: 2.2, rsvp: 1.4, finale: 1.4 }
-};
-
+/* The Rishta of the Season · the full film. All wording lives in config.js. */
+const CONFIG = window.CONFIG;
 /* ============================================================================ */
 (function () {
   'use strict';
@@ -236,13 +97,13 @@ const CONFIG = {
             ${cut('box-closed', 'box-closed', ART.box(false), 'A blush velvet shagun box, closed')}
             ${cut('box-open', 'box-open', ART.box(true), 'The velvet box, open')}
             <div class="velvet-sheen"></div>
-            <svg class="kalava" viewBox="0 0 300 300" aria-hidden="true"><path class="k1" d="M150 100 C152 140 148 190 150 246"/><path class="k1" d="M42 176 C110 186 190 186 258 176"/><path class="k1" d="M150 160 c-26 -24 -40 -6 -18 6 c-18 10 -6 26 18 2 c22 24 36 8 18 -2 c22 -12 8 -30 -18 -6z"/><path class="k1" d="M146 170 q-8 30 -22 44 M154 170 q8 30 22 42"/><path class="k2" d="M150 100 C152 140 148 190 150 246"/></svg>
           </div>
-          <div class="scroll-rise">${cut('scroll', '', ART.scroll(), 'A rolled ivory scroll tied with a red thread', 'inset:0')}<div class="seal">${pieces}</div></div>
+          <div class="scroll-rise"><div class="cut" style="inset:0">${ART.scroll()}</div><div class="seal">${pieces}</div></div>
           <div class="scroll-sheet">${cut('scroll-open', 'paper', ART.scrollOpen(), '', 'inset:0')}
             <div class="ink"><div class="bless">${esc(C.blessing)}</div><div class="bless-sub">${esc(C.blessingSub)}</div>${ART.orn()}<p class="inv">${esc(C.invitation)}</p><div class="names">${esc(C.couple.bride.first)} &amp; ${esc(C.couple.groom.first)}</div></div>
           </div>
-          <button class="btn untie" id="untie" aria-label="Untie the kalava and open your invitation">Untie the kalava</button>
+          <button class="btn untie" id="untie" aria-label="Open your invitation">Tap to open</button>
+          <button class="btn ghost begin" id="begin" aria-label="Begin the story">Begin the story ↓</button>
         </div>`;
     },
     init(sec) {
@@ -258,7 +119,9 @@ const CONFIG = {
       sec.addEventListener('medialoaded', (e) => { const img = e.detail; if (img.closest('.box-closed')) { const sh = $('.velvet-sheen', sec); sh.style.webkitMaskImage = sh.style.maskImage = `url(${img.currentSrc || img.src})`; } });
       if (hasGSAP && !RM) gsap.to($('.op-head', sec), { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.6, ease: 'power2.out', delay: 0.4 });
       else $('.op-head', sec).classList.remove('rise');
-      $('#untie').addEventListener('click', () => openBox(sec));
+      // the whole table is tappable, not just the button
+      sec.querySelector('.view').addEventListener('click', (e) => { if (!opened) openBox(sec); });
+      $('#begin').addEventListener('click', (e) => { e.stopPropagation(); beginStory(sec); });
     },
     tick(dt) {
       this.t = (this.t || 0) + dt;
@@ -1166,7 +1029,7 @@ const CONFIG = {
   let rT; window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { sizeAtmos(); scenes.forEach((s) => s.resize && s.resize()); if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 200); });
 
   /* ============================================================================
-     The opener: untie the kalava
+     The opener: tap the box; the scroll rises, its kalava slips loose, the seal cracks
      ========================================================================== */
   document.body.classList.add('locked');
   function unlock() {
@@ -1176,61 +1039,72 @@ const CONFIG = {
   function startFilm(skipAnim) {
     if (started) return;
     unlock(); setCurrent(0);
-    if (skipAnim) { const s0 = scenes[0].sec; $('.untie', s0).style.display = 'none'; }
+    if (skipAnim) { const s0 = scenes[0].sec; opened = true; $('.untie', s0).style.display = 'none'; }
   }
+  let opened = false;
   function openBox(sec) {
-    const btn = $('#untie'); if (btn.disabled) return; btn.disabled = true;
+    if (opened) return; opened = true;
+    const btn = $('#untie'), begin = $('#begin');
     Sound.unlock(); FX.requestTilt();
     if (store.get('music', true)) toggleMusic(true);
-    const view = sec.querySelector('.view');
     const q = (s) => $(s, sec);
+    const showBegin = () => { unlock(); setCurrent(0); begin.classList.add('on'); };
     if (!hasGSAP || RM) {
-      btn.style.display = 'none'; q('.box-wrap').style.opacity = 0.0; q('.scroll-sheet').style.opacity = 1; q('.scroll-sheet').style.transform = 'translate(-50%,-50%)';
-      unlock(); setCurrent(0); return;
+      btn.style.display = 'none'; q('.op-head').style.opacity = 0; q('.box-wrap').style.opacity = 0;
+      q('.scroll-sheet').style.opacity = 1; q('.scroll-sheet').style.transform = 'translate(-50%,-50%)';
+      $$('.ink > *', sec).forEach((el) => (el.style.opacity = 1));
+      return showBegin();
     }
-    const kal = $$('.kalava path', sec);
+    const kt = $$('.scroll-rise .kt', sec);
     const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-    tl.to(btn, { opacity: 0, y: 10, duration: 0.4, onComplete: () => (btn.style.display = 'none') })
-      .to(q('.op-head'), { opacity: 0, y: -10, filter: 'blur(4px)', duration: 0.8 }, 0)
-      .add(() => Sound.sfx.thread(), 0.05)
-      .to(kal, { strokeDasharray: 400, strokeDashoffset: 400, duration: 0.7, ease: 'power2.in' }, 0.05)
-      .to(q('.kalava'), { y: 30, opacity: 0, duration: 0.7, ease: 'power2.in' }, 0.25)
-      // the lid lifts: a small 3D rock, then the open box with a sheen across the velvet
-      .add(() => Sound.sfx.velvet(), 0.6)
-      .to(q('.box-closed'), { rotationX: 14, y: -6, transformPerspective: 700, transformOrigin: '50% 80%', duration: 0.35, ease: 'power2.out' }, 0.6)
-      .to(q('.box-closed'), { opacity: 0, duration: 0.35 }, 0.85)
-      .fromTo(q('.box-open'), { opacity: 0, rotationX: -10, transformPerspective: 700, transformOrigin: '50% 80%' }, { opacity: 1, rotationX: 0, duration: 0.6, ease: 'back.out(1.4)' }, 0.85)
-      .fromTo(q('.velvet-sheen'), { backgroundPosition: '120% 0' }, { backgroundPosition: '-60% 0', duration: 1.1, ease: 'sine.inOut' }, 0.7)
-      // the scroll rises out of the box
-      .fromTo(q('.scroll-rise'), { opacity: 0, yPercent: 10, scale: 0.7 }, { opacity: 1, yPercent: -120, scale: 1, duration: 0.8, ease: 'power3.out' }, 1.2)
-      // the lac seal cracks and its pieces fall
+    // an instant answer to the tap: the box gives a small, soft bounce
+    tl.to(btn, { opacity: 0, y: 8, duration: 0.25, onComplete: () => (btn.style.display = 'none') }, 0)
+      .to(q('.op-head'), { opacity: 0, y: -10, filter: 'blur(4px)', duration: 0.5 }, 0)
+      .fromTo(q('.box-wrap'), { scale: 1 }, { scale: 0.96, duration: 0.12, ease: 'power2.out', yoyo: true, repeat: 1 }, 0)
+      // the lid opens, with a sheen across the velvet
+      .add(() => Sound.sfx.velvet(), 0.2)
+      .to(q('.box-closed'), { y: -6, duration: 0.25 }, 0.2)
+      .to(q('.box-closed'), { opacity: 0, duration: 0.3 }, 0.35)
+      .fromTo(q('.box-open'), { opacity: 0, y: -4 }, { opacity: 1, y: 0, duration: 0.45, ease: 'back.out(1.6)' }, 0.35)
+      .fromTo(q('.velvet-sheen'), { backgroundPosition: '120% 0' }, { backgroundPosition: '-60% 0', duration: 0.9, ease: 'sine.inOut' }, 0.3)
+      // the scroll, tied with its kalava, rises out of the box
+      .fromTo(q('.scroll-rise'), { opacity: 0, yPercent: 20, scale: 0.6 }, { opacity: 1, yPercent: -95, scale: 1, duration: 0.8, ease: 'power3.out' }, 0.75)
+      // the kalava slips loose and falls away
+      .add(() => Sound.sfx.thread(), 1.55)
+      .to(kt, { strokeDashoffset: 120, duration: 0.5, ease: 'power2.in', stagger: 0.05 }, 1.55)
+      .to(kt, { y: 40, opacity: 0, duration: 0.5, ease: 'power2.in' }, 1.75)
+      // the lac seal cracks and its pieces fall with gravity
       .add(() => {
         Sound.sfx.crack();
         $$('.seal-piece', sec).forEach((pc, i) => {
           const dir = [1, 1.4, 0, -1.4, -1][i];
-          gsap.to(pc, { x: dir * (30 + Math.random() * 30), y: 60 + Math.random() * 30, rotation: dir * (30 + Math.random() * 60), duration: 0.35, ease: 'power1.out' });
-          gsap.to(pc, { y: innerHeight * 0.8, rotation: '+=' + dir * 180, opacity: 0, duration: 1.1, delay: 0.3, ease: 'power2.in' });
+          gsap.to(pc, { x: dir * (30 + Math.random() * 30), y: 50 + Math.random() * 30, rotation: dir * (30 + Math.random() * 60), duration: 0.3, ease: 'power1.out' });
+          gsap.to(pc, { y: innerHeight * 0.8, rotation: '+=' + dir * 180, opacity: 0, duration: 1, delay: 0.25, ease: 'power2.in' });
         });
-      }, 2.0)
-      // the scroll unrolls with weight
-      .add(() => Sound.sfx.unroll(), 2.25)
-      .to(q('.scroll-rise'), { opacity: 0, scale: 1.1, duration: 0.35 }, 2.3)
-      .to(q('.box-wrap'), { yPercent: 25, opacity: 0.0, scale: 0.9, duration: 0.8, ease: 'power2.in' }, 2.3)
-      .fromTo(q('.scroll-sheet'), { opacity: 0, scaleY: 0.06, scaleX: 0.9 }, { opacity: 1, scaleY: 1.02, scaleX: 1, duration: 0.85, ease: 'power3.inOut' }, 2.3)
-      .to(q('.scroll-sheet'), { scaleY: 1, duration: 0.3, ease: 'sine.out' }, 3.15)
-      .fromTo($$('.ink > *', sec), { opacity: 0, y: 8, filter: 'blur(4px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.12 }, 2.75)
-      .add(() => { if (atmos) { atmos.set(14, ['rose', 'jasmine']); atmos.shower(14); } started = true; }, 2.6)
-      // the camera pushes into the scroll and dissolves into the Herald
-      .to(view, { scale: 1.5, filter: 'blur(6px)', opacity: 0, duration: 1.0, ease: 'power2.in' }, 4.4)
-      .add(() => {
-        unlock(); setCurrent(0);
-        const y = scenes[1].sec.offsetTop;
-        if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo(0, y);
-        ScrollTrigger.update();
-        gsap.set(view, { clearProps: 'filter' });
-        gsap.set(view, { opacity: 1, scale: 1 });
-        gsap.fromTo(scenes[1].sec.querySelector('.stage'), { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.3, ease: 'power2.out', clearProps: 'transform' });
-      }, 5.4);
+      }, 2.05)
+      // the scroll unrolls with weight, and the ink appears line by line
+      .add(() => Sound.sfx.unroll(), 2.35)
+      .to(q('.scroll-rise'), { opacity: 0, scale: 1.08, duration: 0.3 }, 2.4)
+      .to(q('.box-wrap'), { yPercent: 22, opacity: 0, scale: 0.92, duration: 0.7, ease: 'power2.in' }, 2.4)
+      .fromTo(q('.scroll-sheet'), { opacity: 0, scaleY: 0.06, scaleX: 0.9 }, { opacity: 1, scaleY: 1.02, scaleX: 1, duration: 0.8, ease: 'power3.inOut' }, 2.4)
+      .to(q('.scroll-sheet'), { scaleY: 1, duration: 0.3, ease: 'sine.out' }, 3.2)
+      .add(() => { if (atmos) { started = true; atmos.set(14, ['rose', 'jasmine']); atmos.shower(14); } }, 2.7)
+      .fromTo($$('.ink > *', sec), { opacity: 0, y: 8, filter: 'blur(4px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.18 }, 2.9)
+      // then the guest reads at their own pace; scrolling or "Begin" continues
+      .add(showBegin, 3.9);
+  }
+  let begun = false;
+  function beginStory(sec) {
+    if (begun) return; begun = true;
+    const view = sec.querySelector('.view'), y = scenes[1].sec.offsetTop;
+    $('#begin').classList.remove('on');
+    if (!hasGSAP || RM) { window.scrollTo(0, y); return; }
+    gsap.to(view, { scale: 1.35, filter: 'blur(6px)', opacity: 0, duration: 0.8, ease: 'power2.in', onComplete() {
+      if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); else window.scrollTo(0, y);
+      ScrollTrigger.update();
+      gsap.set(view, { clearProps: 'filter,opacity,scale' });
+      gsap.fromTo(scenes[1].sec.querySelector('.stage'), { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out', clearProps: 'opacity' });
+    } });
   }
 
   // returning guests can skip the box with the menu; ?skip=1 starts unlocked (handy for testing)

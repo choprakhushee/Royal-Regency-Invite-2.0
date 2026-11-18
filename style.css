@@ -201,10 +201,14 @@ a { color: inherit; }
   position: absolute; bottom: calc(10svh + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
   z-index: 6; min-width: 230px;
 }
+.untie { cursor: pointer; }
+.begin { position: absolute; bottom: calc(5svh + env(safe-area-inset-bottom)); left: 50%; transform: translate(-50%, 10px); z-index: 7; opacity: 0; pointer-events: none; transition: opacity .8s, transform .8s var(--ease-silk); background: rgba(60,20,30,.45); }
+.begin.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+#s-opener .view { cursor: pointer; }
 .untie::after { content: ""; position: absolute; inset: -6px; border-radius: 50px; border: 1px solid rgba(242,226,176,.8); animation: pulse 2.4s ease-out infinite; pointer-events: none; }
 @keyframes pulse { 0% { transform: scale(.94); opacity: .9; } 100% { transform: scale(1.18); opacity: 0; } }
 .scroll-rise { position: absolute; left: 50%; top: 52%; width: 56%; aspect-ratio: 2.2; transform: translate(-50%, -50%); opacity: 0; z-index: 5; }
-.seal { position: absolute; left: 50%; top: 50%; width: 30%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+.seal { position: absolute; left: 66%; top: 50%; width: 26%; aspect-ratio: 1; transform: translate(-50%, -50%); }
 .seal-piece { position: absolute; inset: 0; }
 .scroll-sheet { position: absolute; left: 50%; top: 50%; width: 80%; height: 76svh; transform: translate(-50%, -50%) scaleY(.06); opacity: 0; z-index: 6; transform-origin: 50% 50%; }
 .scroll-sheet .paper { position: absolute; inset: 0; }
@@ -548,3 +552,7 @@ a { color: inherit; }
   .panel { top: 13svh; bottom: 9svh; }
   .panel .inv { font-size: 14px; }
 }
+.scroll-rise, .scroll-sheet, .box-wrap, .diya-glow, .thaal-light, #s-opener .glints { pointer-events: none; }
+.begin { background: linear-gradient(180deg, #6b2734, #4b1822); color: var(--gold-hi); border-color: var(--gold); bottom: calc(3.5svh + env(safe-area-inset-bottom)); }
+.scroll-sheet { top: 47%; }
+.scroll-rise { width: 68%; }
